@@ -75,33 +75,29 @@ const students = [
     }
 ]
 
-const createStudentComponent = (name, subject, info, score) => {
+const createStudentComponent = (student) => {
 
     let studentComponent = ""
-    if (score <= 60) {
+    if (student.score <= 60) {
         studentComponent = "failing"
     } else {
         studentComponent = "passing"
     }
     return `
         <div class="student">
-            <h1 class = " xx- large ${studentComponent}">${name}</h1>
-                <section class = "bordered dashed section--padded">${subject}</section>
-                    <aside class = "pushRight">${info}</aside>
+            <h1 class = " xx- large ${studentComponent}">${student.name}</h1>
+                <section class = "bordered dashed section--padded">${student.subject}</section>
+                    <aside class = "pushRight">${student.info}</aside>
         </div>
     `
 
 }
 
 const studentContainer = document.querySelector("#container");
-
+// took out the student.name, student.subjects.... and passed the whole thing
+//to createStudentComponent so that we only make one argument
 for (let i = 0; i < students.length; i++) {
     const student = students[i]
-    studentContainer.innerHTML += createStudentComponent(
-        student.name,
-        student.subject,
-        student.info,
-        student.score
-    )
+    studentContainer.innerHTML += createStudentComponent(student)
 }
 
